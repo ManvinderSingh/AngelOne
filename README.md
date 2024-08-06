@@ -4,6 +4,8 @@
 This is C# wrapper for smartAPI from AngelOne.
 
 
+You can download the nuget package from here.
+https://www.nuget.org/packages/AngelOne
 
 ## Demo
 
