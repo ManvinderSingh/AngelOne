@@ -19,4 +19,8 @@ public interface ISmartApi
     Task<MultipleSymbolLtpResponseInfo<LtpInfo>> GetMultipleSymbolLtp(MultipleTokensInfo multipleSymbolRequestInfo);
     Task<MultipleSymbolLtpResponseInfo<OHLCResponseInfo>> GetMultipleSymbolOHLC(MultipleTokensInfo multipleSymbolRequestInfo);
     Task<MultipleSymbolLtpResponseInfo<FullLtpInfo>> GetMultipleSymbolFullLtp(MultipleTokensInfo multipleSymbolRequestInfo);
+    Task<PlaceOrderResponseInfo> PlaceOrder(PlaceOrderRequestInfo requestInfo);
+    Task<PlaceOrderResponseInfo> ModifyOrder(ModifyOrderRequestInfo requestInfo);
+    Task<List<TradeBookResponseInfo>> GetTradeBook();
+    Task<IndividualOrderResponseInfo> GetIndividualOrderStatus(string uniqueOrderId);
 }

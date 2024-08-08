@@ -1,16 +1,13 @@
 ﻿using AngelOne.AngelRequestPOCO;
 using AngelOne.AngelResponsePOCO;
+using System;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace AngelOne;
 
 public class SmartApi : ISmartApi
 {
-    //public SmartApi(IWebRequestHandler webRequestHandler)
-    //{
-    //    _webRequestHandler = webRequestHandler;
-    //    IsLoggedIn = Login(Initialize.UserName, Initialize.Pin, Initialize.AuthenticatorKey, Initialize.ApiKey).Result;
-    //}
-
     public SmartApi()
     {
         InitializeHeaders();
@@ -227,6 +224,84 @@ public class SmartApi : ISmartApi
         }
     }
 
+    public async Task<PlaceOrderResponseInfo> PlaceOrder(PlaceOrderRequestInfo requestInfo)
+    {
+        try
+        {
+            var jsonSerializerOptions = new JsonSerializerOptions
+            {
+                Converters = { new JsonStringEnumConverter() }
+            };
+
+            var result = await _webRequestHandler.PostRequest<PlaceOrderResponseInfo>
+                (URLs.PlaceOrder, _headers, HelperMethods.SerializeWithOptions(requestInfo, jsonSerializerOptions));
+
+            if (result.data == null)
+            {
+                throw new Exception($"Unable to place order because {result.message}");
+            }
+            return result.data;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Unable to place new order because {ex.Message}");
+        }
+    }
+
+    public async Task<PlaceOrderResponseInfo> ModifyOrder(ModifyOrderRequestInfo requestInfo)
+    {
+        try
+        {
+            var jsonSerializerOptions = new JsonSerializerOptions
+            {
+                Converters = { new JsonStringEnumConverter() }
+            };
+
+            var result = await _webRequestHandler.PostRequest<PlaceOrderResponseInfo>
+                (URLs.ModifyOrder, _headers, HelperMethods.SerializeWithOptions(requestInfo, jsonSerializerOptions));
+
+            if (result.data == null)
+            {
+                throw new Exception($"Unable to place order because {result.message}");
+            }
+            return result.data;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Unable to modify order because {ex.Message}");
+        }
+    }
+
+    public async Task<List<TradeBookResponseInfo>> GetTradeBook()
+    {
+        try
+        {
+            var result = await _webRequestHandler.GetRequest<List<TradeBookResponseInfo>>(URLs.GetTradeBook, _headers);
+            return result.data;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Unable to get trade book for the day because {ex.Message}");
+        }
+    }
+
+    public async Task<IndividualOrderResponseInfo> GetIndividualOrderStatus(string uniqueOrderId)
+    {
+        try
+        {
+            if (string.IsNullOrWhiteSpace(uniqueOrderId))
+            {
+                throw new Exception("Invalid unique order id passed");
+            }
+            string url = $"{URLs.GetIndividualOrderData}{uniqueOrderId}";
+            var result = await _webRequestHandler.GetRequest<IndividualOrderResponseInfo>(url, _headers);
+            return result.data;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Unable to get trade book for the day because {ex.Message}");
+        }
+    }
     #endregion
 
     #region Public Properties

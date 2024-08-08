@@ -3,12 +3,34 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Authors>Manvinder Singh</Authors>
+     <Nullable>enable</Nullable>
     <AppxAutoIncrementPackageRevision>true</AppxAutoIncrementPackageRevision>
     <Description>C# Wrapper for Angel One Smart API</Description>
     <Title>AngelOne SmartAPI</Title>
-    <Version>1.0.6</Version>
+    <Version>1.0.7</Version>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/manvindersingh/angelone</PackageProjectUrl>
+    <PackageIcon>AngelOne_Icon.png</PackageIcon>
+    <RepositoryUrl>https://github.com/manvindersingh/angelone</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>AngelOne;smartAPI;C#</PackageTags>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
 </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="licenses\**" />
+    <EmbeddedResource Remove="licenses\**" />
+    <None Remove="licenses\**" />
+  </ItemGroup>
+
+  <ItemGroup>   
+    <None Include="..\..\..\Users\Manvinder Singh\Downloads\AngelOne_Icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Ninject" Version="3.3.6" />

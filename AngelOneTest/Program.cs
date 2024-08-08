@@ -1,8 +1,6 @@
 ﻿using AngelOne;
 using AngelOne.AngelRequestPOCO;
 using AngelOne.AngelResponsePOCO;
-using Ninject;
-using System.ComponentModel.DataAnnotations;
 
 internal class Program
 {
@@ -15,6 +13,13 @@ internal class Program
         if (login)
         {
             Console.WriteLine("Is logged in");
+            var orderObj = await program.PlaceOrder(smartApi);
+            if (orderObj != null) 
+            {
+                //get order status
+                await program.GetIndividualOrderStatus(smartApi,orderObj.uniqueorderid);
+                await program.ModifyOrder(smartApi, orderObj.orderid);
+            }
             await program.GetLtp(smartApi);
             await program.GetOrderBook(smartApi);
             await program.GetAllHoldins(smartApi);
@@ -29,6 +34,52 @@ internal class Program
         {
             Console.WriteLine("Is not logged in");
         }
+    }
+
+    private async Task GetIndividualOrderStatus(ISmartApi smartApi, string uniqueOrderId)
+    {
+        var response = await smartApi.GetIndividualOrderStatus(uniqueOrderId);
+    }
+
+    private async Task GetTradeBook(ISmartApi smartApi)
+    {
+        var response = await smartApi.GetTradeBook();
+    }
+
+    private async Task<PlaceOrderResponseInfo> PlaceOrder(ISmartApi smartApi)
+    {
+        var requestInfo = new PlaceOrderRequestInfo
+        {
+            tradingsymbol = "ADANIENT-EQ",
+            quantity = 10,
+            symboltoken = "25",
+            price = 1m,
+            duration = OrderDuration.DAY,
+            exchange = Exchange.NSE,
+            ordertype = OrderType.LIMIT,
+            producttype = ProductType.DELIVERY,
+            disclosedquantity = 5
+        };
+        var response = await smartApi.PlaceOrder(requestInfo);
+        return response;
+    }
+
+    public async Task ModifyOrder(ISmartApi smartApi, string orderId)
+    {
+        var requestInfo = new ModifyOrderRequestInfo
+        {
+            orderid = orderId,
+            tradingsymbol = "ADANIENT-EQ",
+            quantity = 10,
+            symboltoken = "25",
+            price = 1m,
+            duration = OrderDuration.DAY,
+            exchange = Exchange.NSE,
+            ordertype = OrderType.LIMIT,
+            producttype = ProductType.DELIVERY,
+            disclosedquantity = 5
+        };
+        var response = await smartApi.ModifyOrder(requestInfo);
     }
 
     private async Task GetLtp(ISmartApi smartApi)
