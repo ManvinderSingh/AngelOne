@@ -43,6 +43,10 @@ For now these methods are supported.
 11. GetMultipleSymbolLtp
 12. GetMultipleSymbolOHLC
 13. GetMultipleSymbolFullLtp
+14. Place Order
+15. Modify Order
+16. Get Trade Book
+17. Get Individual Order Data 
 
 ## Roadmap
 
