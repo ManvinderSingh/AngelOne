@@ -15,4 +15,8 @@ public static class URLs
     
     public static string GetInstrumentsList = "https://margincalculator.angelbroking.com/OpenAPI_File/files/OpenAPIScripMaster.json";
     public static string GetMultipleLtpData => "https://apiconnect.angelbroking.com/rest/secure/angelbroking/market/v1/quote/";
+    public static string PlaceOrder => "https://apiconnect.angelbroking.com/rest/secure/angelbroking/order/v1/placeOrder";
+    public static string ModifyOrder => "https://apiconnect.angelbroking.com/rest/secure/angelbroking/order/v1/modifyOrder";
+    public static string GetTradeBook => "https://apiconnect.angelbroking.com/rest/secure/angelbroking/order/v1/getTradeBook";
+    public static string GetIndividualOrderData => "https://apiconnect.angelbroking.com/rest/secure/angelbroking/order/v1/details/";
 }

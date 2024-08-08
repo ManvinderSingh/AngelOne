@@ -2,13 +2,14 @@
 using System.Net.Sockets;
 using System.Net;
 using OtpNet;
+using System.Text.Json;
 
 namespace AngelOne;
 
 public class HelperMethods
 {
     public static string LocalIpAddress { get; }
-    public static string PublicIpAddress { get;  }
+    public static string PublicIpAddress { get; }
     public static string MacAddress { get; }
 
     static HelperMethods()
@@ -64,4 +65,9 @@ public class HelperMethods
         return payload;
     }
 
+    public static string SerializeWithOptions<T>(T obj, JsonSerializerOptions options)
+    {
+        var payload = System.Text.Json.JsonSerializer.Serialize(obj, options);
+        return payload;
+    }
 }
