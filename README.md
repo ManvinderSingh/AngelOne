@@ -26,6 +26,26 @@ if (loginResult)
 
 ```
 
+## Websocket Streaming is now supported
+```c#
+  var tokenList = new List<string> { "13868", "17438", "14366", "11915" };
+  var obj = new WebsocketStreaming();
+  obj.RequestData = new WebStreamingRequestInfo
+  {
+      exchange = StreamingExchangeType.NSE,
+      tokens = tokenList
+  };
+  obj.OnPriceUpdate += Obj_OnPriceUpdate;
+  await obj.StartAsync();
+
+```
+
+```c#
+  private void Obj_OnPriceUpdate(WebStreamResponseInfo response)
+  {
+      Debug.WriteLine($"{DateTime.Now.TimeOfDay.ToString()} Message update for {response.token}, ltp is {response.ltp} at {response.exchangeTimeStamp} for exchnage {response.exchangeType}");
+  }
+```
 For now these methods are supported.
 
 ### Methods
