@@ -70,4 +70,14 @@ public class HelperMethods
         var payload = System.Text.Json.JsonSerializer.Serialize(obj, options);
         return payload;
     }
+
+    public static DateTime FromEpochToDateTime(long epochMilliseconds)
+    {
+        DateTimeOffset dateTimeOffset = DateTimeOffset.FromUnixTimeMilliseconds(epochMilliseconds);
+        DateTime dateTime = dateTimeOffset.UtcDateTime;
+        // If you want to convert to local time
+        DateTime localDateTime = dateTimeOffset.LocalDateTime;
+        return localDateTime;
+    }
+
 }

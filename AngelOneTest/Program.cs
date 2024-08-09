@@ -1,6 +1,7 @@
 ﻿using AngelOne;
 using AngelOne.AngelRequestPOCO;
 using AngelOne.AngelResponsePOCO;
+using System.Diagnostics;
 
 internal class Program
 {
@@ -13,6 +14,9 @@ internal class Program
         if (login)
         {
             Console.WriteLine("Is logged in");
+            await program.WebsocketStreamind(smartApi);
+            Console.ReadLine();
+            await program.GetTradeBook(smartApi);
             var orderObj = await program.PlaceOrder(smartApi);
             if (orderObj != null) 
             {
@@ -34,6 +38,23 @@ internal class Program
         {
             Console.WriteLine("Is not logged in");
         }
+    }
+
+    private async Task WebsocketStreamind(ISmartApi smartApi)
+    {
+        var tokenList = new List<string> { "13868", "17438", "14366", "11915" };
+        var obj = new WebsocketStreaming();
+        obj.RequestData = new WebStreamingRequestInfo
+        {
+            exchange = StreamingExchangeType.NSE,
+            tokens = tokenList
+        };
+        obj.OnPriceUpdate += Obj_OnPriceUpdate;
+        await obj.StartAsync();
+    }
+    private void Obj_OnPriceUpdate(WebStreamResponseInfo response)
+    {
+        Debug.WriteLine($"{DateTime.Now.TimeOfDay.ToString()} Message update for {response.token}, ltp is {response.ltp} at {response.exchangeTimeStamp} for exchnage {response.exchangeType}");
     }
 
     private async Task GetIndividualOrderStatus(ISmartApi smartApi, string uniqueOrderId)

@@ -19,4 +19,5 @@ public static class URLs
     public static string ModifyOrder => "https://apiconnect.angelbroking.com/rest/secure/angelbroking/order/v1/modifyOrder";
     public static string GetTradeBook => "https://apiconnect.angelbroking.com/rest/secure/angelbroking/order/v1/getTradeBook";
     public static string GetIndividualOrderData => "https://apiconnect.angelbroking.com/rest/secure/angelbroking/order/v1/details/";
+    public static string WebSocketUrl => "wss://smartapisocket.angelone.in/smart-stream";
 }

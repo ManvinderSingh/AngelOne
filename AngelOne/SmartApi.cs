@@ -12,6 +12,7 @@ public class SmartApi : ISmartApi
     {
         InitializeHeaders();
         _webRequestHandler = new WebRequestHandler();
+        GlobalData.SmartApi = this;
     }
     #region Public Methods
 
@@ -339,7 +340,9 @@ public class SmartApi : ISmartApi
                 if (!_headers.ContainsKey("Authorization"))
                     _headers.TryAdd("Authorization", $"Bearer {response.data.jwtToken}");
                 {
-                   // IsLoggedIn = true;
+                    GlobalData.ApiKey = apiKey;
+                    GlobalData.AuthToken = response.data.jwtToken;
+                    GlobalData.FeedToken = response.data.feedToken;
                     return true;
                 }
             }
