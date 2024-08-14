@@ -178,9 +178,9 @@ internal class Program
         {
             tradingsymbol = "GICRE-EQ",
             symboltoken = "277",
-            exchange = "NSE",
-            transactiontype = "SELL",
-            producttype = "DELIVERY",
+            exchange = Exchange.NSE,
+            transactiontype = TransactionType.SELL,
+            producttype = ProductType.DELIVERY,
             price = 404.15m,
             triggerprice = 404.25m,
             qty = 46

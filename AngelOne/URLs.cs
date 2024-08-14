@@ -12,7 +12,6 @@ public static class URLs
     public static string GetAllHoldings => "https://apiconnect.angelbroking.com/rest/secure/angelbroking/portfolio/v1/getAllHolding";
     public static string CancelOrder => "https://apiconnect.angelbroking.com/rest/secure/angelbroking/order/v1/cancelOrder";
     public static string GetOrderBook => "https://apiconnect.angelbroking.com/rest/secure/angelbroking/order/v1/getOrderBook";
-    
     public static string GetInstrumentsList = "https://margincalculator.angelbroking.com/OpenAPI_File/files/OpenAPIScripMaster.json";
     public static string GetMultipleLtpData => "https://apiconnect.angelbroking.com/rest/secure/angelbroking/market/v1/quote/";
     public static string PlaceOrder => "https://apiconnect.angelbroking.com/rest/secure/angelbroking/order/v1/placeOrder";
@@ -20,4 +19,7 @@ public static class URLs
     public static string GetTradeBook => "https://apiconnect.angelbroking.com/rest/secure/angelbroking/order/v1/getTradeBook";
     public static string GetIndividualOrderData => "https://apiconnect.angelbroking.com/rest/secure/angelbroking/order/v1/details/";
     public static string WebSocketUrl => "wss://smartapisocket.angelone.in/smart-stream";
+    public static string GetProfile => "https://apiconnect.angelbroking.com/rest/secure/angelbroking/user/v1/getProfile";
+    public static string GetFundsAndMargins => "https://apiconnect.angelbroking.com/rest/secure/angelbroking/user/v1/getRMS";
+    public static string CancelGttOrder => "https://apiconnect.angelbroking.com/rest/secure/angelbroking/gtt/v1/cancelRule";
 }

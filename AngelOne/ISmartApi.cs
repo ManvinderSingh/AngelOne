@@ -10,6 +10,7 @@ public interface ISmartApi
     Task<int> CreateGTTOrder(GTTOrderRequestInfo gttorderRequestInfo);
     Task<List<GttOrderListResponseInfo>> GetGTTOrdersList(GTTOrderListRequestInfo gttOrderListInfo);
     Task<List<HistoricalDataResponseInfo>> GetHistoricalData(HistoricalDataRequestInfo historicalDataRequestInfo);
+    Task<CancelGttOrderResponseInfo> CancelGttOrder(CancelGttOrderRequestInfo cancelGttOrderRequestInfo);
     Task<List<PositionInfo>> GetPosition();
     Task<List<HoldingResponseInfo>> GetHolding();
     Task<AllHoldingResponseInfo> GetAllHoldings();
@@ -23,4 +24,6 @@ public interface ISmartApi
     Task<PlaceOrderResponseInfo> ModifyOrder(ModifyOrderRequestInfo requestInfo);
     Task<List<TradeBookResponseInfo>> GetTradeBook();
     Task<IndividualOrderResponseInfo> GetIndividualOrderStatus(string uniqueOrderId);
+    Task<ProfileResponseInfo> GetProfile();
+    Task<FundsAndMarginsResponseInfo> GetFundsAndMargins();
 }

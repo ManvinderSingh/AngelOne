@@ -5,7 +5,7 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AngelOne", "AngelOne\AngelOne.csproj", "{6FDA74EA-E334-4CCE-BE1A-D8CB0D9F8820}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngelOneTest", "AngelOneTest\AngelOneTest.csproj", "{FDFC913A-E9D4-4A76-AF49-C1F6846556F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AngelOneTest", "AngelOneTest\AngelOneTest.csproj", "{FDFC913A-E9D4-4A76-AF49-C1F6846556F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,7 +18,6 @@ Global
 		{6FDA74EA-E334-4CCE-BE1A-D8CB0D9F8820}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FDA74EA-E334-4CCE-BE1A-D8CB0D9F8820}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FDFC913A-E9D4-4A76-AF49-C1F6846556F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FDFC913A-E9D4-4A76-AF49-C1F6846556F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDFC913A-E9D4-4A76-AF49-C1F6846556F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDFC913A-E9D4-4A76-AF49-C1F6846556F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

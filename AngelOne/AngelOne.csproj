@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -8,7 +8,7 @@
     <AppxAutoIncrementPackageRevision>true</AppxAutoIncrementPackageRevision>
     <Description>C# Wrapper for Angel One Smart API</Description>
     <Title>AngelOne SmartAPI</Title>
-    <Version>1.0.7</Version>
+    <Version>1.0.9</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/manvindersingh/angelone</PackageProjectUrl>
     <PackageIcon>AngelOne_Icon.png</PackageIcon>
@@ -17,6 +17,14 @@
     <PackageTags>AngelOne;smartAPI;C#</PackageTags>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
+</PropertyGroup>
+
+<ItemGroup>
+  <None Include="..\README.md" Pack="true" PackagePath="\"/>
+</ItemGroup>
+
+<PropertyGroup>
+  <PackageReadmeFile>README.md</PackageReadmeFile>
 </PropertyGroup>
 
   <ItemGroup>

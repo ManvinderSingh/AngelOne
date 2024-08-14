@@ -85,8 +85,20 @@ public class SmartApi : ISmartApi
     {
         try
         {
-            var response = await _webRequestHandler.PostRequest<GttOrderResponseInfo>(URLs.CreateGTTOrder, _headers, HelperMethods.Serialize(gttorderRequestInfo));
-            return response.data.id;
+            var jsonSerializerOptions = new JsonSerializerOptions
+            {
+                Converters = { new JsonStringEnumConverter() }
+            };
+
+            var result = await _webRequestHandler.PostRequest<GttOrderResponseInfo>
+                (URLs.CreateGTTOrder, _headers, HelperMethods.SerializeWithOptions(gttorderRequestInfo, jsonSerializerOptions));
+          
+            if (result.data == null)
+            {
+                throw new Exception($"Unable to place order because {result.message}");
+            }
+            
+            return result.data.id;
         }
         catch (Exception ex)
         {
@@ -303,6 +315,47 @@ public class SmartApi : ISmartApi
             throw new Exception($"Unable to get trade book for the day because {ex.Message}");
         }
     }
+
+
+    public async Task<ProfileResponseInfo> GetProfile()
+    {
+        try
+        {
+            var result = await _webRequestHandler.GetRequest<ProfileResponseInfo>(URLs.GetProfile, _headers);
+            return result.data;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Unable to get user profile info because {ex.Message}");
+        }
+    }
+
+    public async Task<FundsAndMarginsResponseInfo> GetFundsAndMargins()
+    {
+        try
+        {
+            var result = await _webRequestHandler.GetRequest<FundsAndMarginsResponseInfo>(URLs.GetFundsAndMargins, _headers);
+            return result.data;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Unable to get funds and margins info because {ex.Message}");
+        }
+    }
+
+    public async Task<CancelGttOrderResponseInfo> CancelGttOrder(CancelGttOrderRequestInfo cancelGttOrderRequestInfo)
+    {
+        try
+        {
+            var result = await _webRequestHandler.PostRequest<CancelGttOrderResponseInfo>(URLs.CancelGttOrder, _headers, HelperMethods.Serialize(cancelGttOrderRequestInfo));
+            return result.data;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Unable to cancel gtt order because {ex.Message}");
+        }
+    }
+
     #endregion
 
     #region Public Properties
