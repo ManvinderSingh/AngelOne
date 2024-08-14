@@ -48,7 +48,7 @@ if (loginResult)
 ```
 For now these methods are supported.
 
-### Methods
+### Supported Methods
 
 1. GetInstrumentList
 2. CreateGTTOrder
@@ -67,6 +67,9 @@ For now these methods are supported.
 15. Modify Order
 16. Get Trade Book
 17. Get Individual Order Data 
+18. CancelGTTOrder
+19. GetProfile
+20. GetFundsAndMargins
 
 ## Roadmap
 
