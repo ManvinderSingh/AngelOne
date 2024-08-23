@@ -1,6 +1,5 @@
 ﻿using AngelOne.AngelRequestPOCO;
 using AngelOne.AngelResponsePOCO;
-using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -353,6 +352,25 @@ public class SmartApi : ISmartApi
         catch (Exception ex)
         {
             throw new Exception($"Unable to cancel gtt order because {ex.Message}");
+        }
+    }
+
+    public async Task<ModifyGttOrderResponseInfo> ModifyGttOrder(ModifyGttOrderRequestInfo editGttOrderRequestInfo)
+    {
+        try
+        {
+            var jsonSerializerOptions = new JsonSerializerOptions
+            {
+                Converters = { new JsonStringEnumConverter() }
+            };
+
+            var result = await _webRequestHandler.PostRequest<ModifyGttOrderResponseInfo>
+                (URLs.EditGttOrder, _headers, HelperMethods.SerializeWithOptions(editGttOrderRequestInfo, jsonSerializerOptions));
+            return result.data;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Unable to edit gtt order because {ex.Message}");
         }
     }
 

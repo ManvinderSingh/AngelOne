@@ -26,4 +26,5 @@ public interface ISmartApi
     Task<IndividualOrderResponseInfo> GetIndividualOrderStatus(string uniqueOrderId);
     Task<ProfileResponseInfo> GetProfile();
     Task<FundsAndMarginsResponseInfo> GetFundsAndMargins();
+    Task<ModifyGttOrderResponseInfo> ModifyGttOrder(ModifyGttOrderRequestInfo editGttOrderRequestInfo);
 }

@@ -8,7 +8,7 @@
     <AppxAutoIncrementPackageRevision>true</AppxAutoIncrementPackageRevision>
     <Description>C# Wrapper for Angel One Smart API</Description>
     <Title>AngelOne SmartAPI</Title>
-    <Version>1.0.9</Version>
+    <Version>1.0.11</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/manvindersingh/angelone</PackageProjectUrl>
     <PackageIcon>AngelOne_Icon.png</PackageIcon>

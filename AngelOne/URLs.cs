@@ -22,4 +22,5 @@ public static class URLs
     public static string GetProfile => "https://apiconnect.angelbroking.com/rest/secure/angelbroking/user/v1/getProfile";
     public static string GetFundsAndMargins => "https://apiconnect.angelbroking.com/rest/secure/angelbroking/user/v1/getRMS";
     public static string CancelGttOrder => "https://apiconnect.angelbroking.com/rest/secure/angelbroking/gtt/v1/cancelRule";
+    public static string EditGttOrder => "https://apiconnect.angelbroking.com/rest/secure/angelbroking/gtt/v1/modifyRule";
 }

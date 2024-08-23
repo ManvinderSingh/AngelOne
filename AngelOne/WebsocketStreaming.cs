@@ -10,7 +10,7 @@ namespace AngelOne
         public delegate void PriceUpdate(WebStreamResponseInfo responseInfo);
         public event PriceUpdate OnPriceUpdate;
         private static readonly object _lockObject = new();
-        private readonly ClientWebSocket _socket;
+        private ClientWebSocket _socket;
         public WebStreamingRequestInfo RequestData { get; set; }
         public WebsocketStreaming()
         {
@@ -21,6 +21,13 @@ namespace AngelOne
         public async Task StartAsync()
         {
             var requestObject = CreateRequestObject();
+            if (_socket.State == WebSocketState.Open)
+            {
+                await _socket.CloseAsync(WebSocketCloseStatus.NormalClosure, "", CancellationToken.None);
+                _socket.Dispose();
+                _socket = new ClientWebSocket();
+            }
+
             ConfigureSocketHeaders();
             await _socket.ConnectAsync(new Uri(URLs.WebSocketUrl), CancellationToken.None);
             if (_socket.State == WebSocketState.Open)
