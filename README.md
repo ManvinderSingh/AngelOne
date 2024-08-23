@@ -70,6 +70,7 @@ For now these methods are supported.
 18. CancelGTTOrder
 19. GetProfile
 20. GetFundsAndMargins
+21. Modify GTT Order
 
 ## Roadmap
 
