@@ -7,6 +7,10 @@ This is C# wrapper for smartAPI from AngelOne.
 You can download the nuget package from here.
 https://www.nuget.org/packages/AngelOne
 
+
+Demo on how to use this API for end user is here.
+https://www.youtube.com/watch?v=QMhkE-2aotY
+
 ## Demo
 
 Added demo code for the wrapper [here](https://github.com/ManvinderSingh/AngelOne/blob/master/AngelOneTest/Program.cs).
