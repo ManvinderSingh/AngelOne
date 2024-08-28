@@ -8,7 +8,7 @@ You can download the nuget package from here.
 https://www.nuget.org/packages/AngelOne
 
 
-Demo on how to use this API for end user is here.
+Demo on how to use this API for end user is here. You can find all important functions of this API in this youtube channel.
 https://www.youtube.com/watch?v=QMhkE-2aotY
 
 ## Demo
