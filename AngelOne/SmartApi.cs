@@ -45,7 +45,8 @@ public class SmartApi : ISmartApi
     {
         try
         {
-            var response = await _webRequestHandler.PostRequest<CancelOrderResponseInfo>(URLs.CancelOrder, _headers, HelperMethods.Serialize(cancelOrderRequestInfo));
+            var response = await _webRequestHandler.PostRequest<CancelOrderResponseInfo>
+                (URLs.CancelOrder, _headers, HelperMethods.SerializeWithEnumValues(cancelOrderRequestInfo));
             return response.data;
         }
         catch (Exception ex)
@@ -84,13 +85,8 @@ public class SmartApi : ISmartApi
     {
         try
         {
-            var jsonSerializerOptions = new JsonSerializerOptions
-            {
-                Converters = { new JsonStringEnumConverter() }
-            };
-
             var result = await _webRequestHandler.PostRequest<GttOrderResponseInfo>
-                (URLs.CreateGTTOrder, _headers, HelperMethods.SerializeWithOptions(gttorderRequestInfo, jsonSerializerOptions));
+                (URLs.CreateGTTOrder, _headers, HelperMethods.SerializeWithEnumValues(gttorderRequestInfo));
           
             if (result.data == null)
             {
@@ -122,7 +118,8 @@ public class SmartApi : ISmartApi
     {
         try
         {
-            var response = await _webRequestHandler.PostRequest<List<List<object>>>(URLs.GetHistoricalData, _headers, HelperMethods.Serialize(historicalDataRequestInfo));
+            var response = await _webRequestHandler.PostRequest<List<List<object>>>
+                (URLs.GetHistoricalData, _headers, HelperMethods.SerializeWithEnumValues(historicalDataRequestInfo));
             var result = new List<HistoricalDataResponseInfo>();
             foreach (var item in response.data)
             {
@@ -227,7 +224,7 @@ public class SmartApi : ISmartApi
     {
         try
         {
-            var result = await _webRequestHandler.PostRequest<OHLCResponseInfo>(URLs.GetLtpData, _headers, HelperMethods.Serialize(ltpRequestInfo));
+            var result = await _webRequestHandler.PostRequest<OHLCResponseInfo>(URLs.GetLtpData, _headers, HelperMethods.SerializeWithEnumValues(ltpRequestInfo));
             return result.data;
         }
         catch (Exception ex)
@@ -240,13 +237,8 @@ public class SmartApi : ISmartApi
     {
         try
         {
-            var jsonSerializerOptions = new JsonSerializerOptions
-            {
-                Converters = { new JsonStringEnumConverter() }
-            };
-
             var result = await _webRequestHandler.PostRequest<PlaceOrderResponseInfo>
-                (URLs.PlaceOrder, _headers, HelperMethods.SerializeWithOptions(requestInfo, jsonSerializerOptions));
+                (URLs.PlaceOrder, _headers, HelperMethods.SerializeWithEnumValues(requestInfo));
 
             if (result.data == null)
             {
@@ -263,14 +255,9 @@ public class SmartApi : ISmartApi
     public async Task<PlaceOrderResponseInfo> ModifyOrder(ModifyOrderRequestInfo requestInfo)
     {
         try
-        {
-            var jsonSerializerOptions = new JsonSerializerOptions
-            {
-                Converters = { new JsonStringEnumConverter() }
-            };
-
+        {           
             var result = await _webRequestHandler.PostRequest<PlaceOrderResponseInfo>
-                (URLs.ModifyOrder, _headers, HelperMethods.SerializeWithOptions(requestInfo, jsonSerializerOptions));
+                (URLs.ModifyOrder, _headers, HelperMethods.SerializeWithEnumValues(requestInfo));
 
             if (result.data == null)
             {
@@ -359,13 +346,8 @@ public class SmartApi : ISmartApi
     {
         try
         {
-            var jsonSerializerOptions = new JsonSerializerOptions
-            {
-                Converters = { new JsonStringEnumConverter() }
-            };
-
             var result = await _webRequestHandler.PostRequest<ModifyGttOrderResponseInfo>
-                (URLs.EditGttOrder, _headers, HelperMethods.SerializeWithOptions(editGttOrderRequestInfo, jsonSerializerOptions));
+                (URLs.EditGttOrder, _headers, HelperMethods.SerializeWithEnumValues(editGttOrderRequestInfo));
             return result.data;
         }
         catch (Exception ex)

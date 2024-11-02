@@ -21,15 +21,17 @@ internal class Program
             if (orderObj != null) 
             {
                 //get order status
-                await program.GetIndividualOrderStatus(smartApi,orderObj.uniqueorderid);
+                await program.GetIndividualOrderStatus(smartApi, orderObj.uniqueorderid);
                 await program.ModifyOrder(smartApi, orderObj.orderid);
+                await program.CancelOrder(smartApi, orderObj.orderid);
             }
             await program.GetLtp(smartApi);
             await program.GetOrderBook(smartApi);
             await program.GetAllHoldins(smartApi);
             await program.GetHolding(smartApi);
             await program.GetOpenPosition(smartApi);
-            //await program.CreateGTTOrder(smartApi);
+            //var gttOrder = await program.CreateGTTOrder(smartApi);
+            ////await program.CancelGttOrder(smartApi, gttOrder);
             //await program.GetGTTRuleList(smartApi);
             await program.GetHistoricalData(smartApi);
 
@@ -38,6 +40,25 @@ internal class Program
         {
             Console.WriteLine("Is not logged in");
         }
+    }
+
+    private async Task CancelGttOrder(ISmartApi smartApi, int orderId)
+    {
+        var response = await smartApi.CancelGttOrder(new CancelGttOrderRequestInfo
+        {
+            exchange = Exchange.NSE,
+            symboltoken = "277",
+            id = orderId
+        });
+    }
+
+    public async Task CancelOrder(ISmartApi smartApi, string orderId)
+    {
+        var response = await smartApi.CancelOrder(new CancelOrderRequestInfo
+        {
+            orderid = orderId,
+            variety = OrderVariety.NORMAL
+        });
     }
 
     private async Task WebsocketStreamind(ISmartApi smartApi)
@@ -114,16 +135,16 @@ internal class Program
             NSE = nseSymbols
         };
 
-        //var response = await smartApi.GetMultipleSymbolLtp(symbols);
-        var response = await smartApi.GetMultipleSymbolOHLC(symbols);
-        //var response = await smartApi.GetMultipleSymbolFullLtp(symbols);
+        //var multipleResponse = await smartApi.GetMultipleSymbolLtp(symbols);
+        //var ohlcResponse = await smartApi.GetMultipleSymbolOHLC(symbols);
+        //var fullResponse = await smartApi.GetMultipleSymbolFullLtp(symbols);
 
-        //var response = await smartApi.GetLtp(new LtpRequestInfo
-        //{
-        //    exchange = "NSE",
-        //    tradingsymbol = "SBIN-EQ",
-        //    symboltoken = "3045"
-        //});
+        var response = await smartApi.GetLtp(new LtpRequestInfo
+        {
+            exchange = Exchange.NSE,
+            tradingsymbol = "SBIN-EQ",
+            symboltoken = "3045"
+        });
     }
 
     private async Task<List<OrderBookResponseInfo>> GetOrderBook(ISmartApi smartApi)
@@ -152,10 +173,10 @@ internal class Program
         Console.WriteLine("Getting historical data");
         var obj = new HistoricalDataRequestInfo
         {
-            exchange = "NSE",
+            exchange = Exchange.NSE,
             fromdate = new DateTime(2024, 01, 01, 12, 0, 0),
             todate = new DateTime(2024, 03, 03, 12, 0, 0),
-            interval = "ONE_DAY",
+            interval = Interval.ONE_DAY,
             symboltoken = "3048"
         };
         var response = await smartApi.GetHistoricalData(obj);
@@ -170,7 +191,7 @@ internal class Program
         var response = await smartApi.GetGTTOrdersList(obj);
     }
 
-    private async Task CreateGTTOrder(ISmartApi smartApi)
+    private async Task<int> CreateGTTOrder(ISmartApi smartApi)
     {
         Console.WriteLine("Creating GTT order");
         //place gtt order
@@ -187,6 +208,6 @@ internal class Program
         };
 
         var response = await smartApi.CreateGTTOrder(gttOrder);
-
+        return response;
     }
 }

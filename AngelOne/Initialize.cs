@@ -1,11 +1,4 @@
-﻿using Ninject;
-
-namespace AngelOne;
-
-public class IoC
-{
-    public static IKernel Kernel { get; set; }
-}
+﻿namespace AngelOne;
 
 public class Initialize
 {
@@ -16,10 +9,6 @@ public class Initialize
 
     public Initialize(string userName, string pinCode, string authenticatorKey, string apiKey)
     {
-        IoC.Kernel = new StandardKernel();
-        IoC.Kernel.Bind<IWebRequestHandler>().To<WebRequestHandler>();
-        IoC.Kernel.Bind<ISmartApi>().To<SmartApi>();
-
         UserName = userName;
         Pin = pinCode;
         AuthenticatorKey = authenticatorKey;

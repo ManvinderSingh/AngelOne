@@ -46,3 +46,15 @@ public enum OrderVariety
     AMO,
     ROBO
 }
+
+public enum Interval
+{
+    ONE_MINUTE,
+    THREE_MINUTE,
+    FIVE_MINUTE,
+    TEN_MINUTE,
+    FIFTEEN_MINUTE,
+    THIRTY_MINUTE,
+    ONE_HOUR,
+    ONE_DAY
+}

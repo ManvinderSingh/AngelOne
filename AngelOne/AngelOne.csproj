@@ -8,7 +8,7 @@
     <AppxAutoIncrementPackageRevision>true</AppxAutoIncrementPackageRevision>
     <Description>C# Wrapper for Angel One Smart API</Description>
     <Title>AngelOne SmartAPI</Title>
-    <Version>1.0.11</Version>
+    <Version>1.0.12</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/manvindersingh/angelone</PackageProjectUrl>
     <PackageIcon>AngelOne_Icon.png</PackageIcon>
@@ -20,7 +20,7 @@
 </PropertyGroup>
 
 <ItemGroup>
-  <None Include="..\README.md" Pack="true" PackagePath="\"/>
+  <None Include="..\README.md" Pack="true" PackagePath="\" />
 </ItemGroup>
 
 <PropertyGroup>
@@ -41,7 +41,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ninject" Version="3.3.6" />
     <PackageReference Include="Otp.NET" Version="1.4.0" />
   </ItemGroup>
 

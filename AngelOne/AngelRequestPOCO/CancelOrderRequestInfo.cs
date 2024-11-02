@@ -2,6 +2,6 @@
 
 public class CancelOrderRequestInfo
 {
-    public string variety { get; set; }
+    public OrderVariety variety { get; set; }
     public string orderid { get; set; }
 }

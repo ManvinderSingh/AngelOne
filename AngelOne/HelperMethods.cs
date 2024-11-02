@@ -3,6 +3,7 @@ using System.Net.Sockets;
 using System.Net;
 using OtpNet;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace AngelOne;
 
@@ -65,9 +66,13 @@ public class HelperMethods
         return payload;
     }
 
-    public static string SerializeWithOptions<T>(T obj, JsonSerializerOptions options)
+    public static string SerializeWithEnumValues<T>(T obj)
     {
-        var payload = System.Text.Json.JsonSerializer.Serialize(obj, options);
+        var jsonSerializerOptions = new JsonSerializerOptions
+        {
+            Converters = { new JsonStringEnumConverter() }
+        };
+        var payload = JsonSerializer.Serialize(obj, jsonSerializerOptions);
         return payload;
     }
 
@@ -79,5 +84,4 @@ public class HelperMethods
         DateTime localDateTime = dateTimeOffset.LocalDateTime;
         return localDateTime;
     }
-
 }

@@ -4,9 +4,9 @@ namespace AngelOne.AngelRequestPOCO;
 
 public class HistoricalDataRequestInfo
 {
-    public string exchange { get; set; }
+    public Exchange exchange { get; set; }
     public string symboltoken { get; set; }
-    public string interval { get; set; }
+    public Interval interval { get; set; }
     [JsonIgnore]
     public DateTime fromdate { get; set; }
     [JsonIgnore]
