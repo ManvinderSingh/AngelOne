@@ -58,3 +58,11 @@ public enum Interval
     ONE_HOUR,
     ONE_DAY
 }
+
+public enum SteamingMode
+{
+    Ltp = 1,
+    Quote = 2,
+    Snap_Quote = 3,
+    Twenty_Depth = 4
+}

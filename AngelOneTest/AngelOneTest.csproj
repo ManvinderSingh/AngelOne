@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AngelOne" Version="1.0.12" />
+    <ProjectReference Include="..\AngelOne\AngelOne.csproj" />
   </ItemGroup>
 
 </Project>
