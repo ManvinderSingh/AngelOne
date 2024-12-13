@@ -14,11 +14,11 @@ internal class Program
         if (login)
         {
             Console.WriteLine("Is logged in");
-            await program.WebsocketStreamind(smartApi);
+            await program.WebsocketStreaming(smartApi);
             Console.ReadLine();
             await program.GetTradeBook(smartApi);
             var orderObj = await program.PlaceOrder(smartApi);
-            if (orderObj != null) 
+            if (orderObj != null)
             {
                 //get order status
                 await program.GetIndividualOrderStatus(smartApi, orderObj.uniqueorderid);
@@ -61,14 +61,15 @@ internal class Program
         });
     }
 
-    private async Task WebsocketStreamind(ISmartApi smartApi)
+    private async Task WebsocketStreaming(ISmartApi smartApi)
     {
-        var tokenList = new List<string> { "13868", "17438", "14366", "11915" };
+        var tokenList = new List<string> { "2277" };
         var obj = new WebsocketStreaming();
         obj.RequestData = new WebStreamingRequestInfo
         {
             exchange = StreamingExchangeType.NSE,
-            tokens = tokenList
+            tokens = tokenList,
+           // Mode = SteamingMode.Snap_Quote
         };
         obj.OnPriceUpdate += Obj_OnPriceUpdate;
         await obj.StartAsync();
