@@ -4,8 +4,13 @@ namespace AngelOne.AngelRequestPOCO;
 
 public class WebStreamingRequestInfo
 {
+    public WebStreamingRequestInfo()
+    {
+        Mode = SteamingMode.Ltp;
+    }
     public StreamingExchangeType exchange { get; set; }
     public List<string> tokens { get; set; }
+    public SteamingMode Mode { get; set; }
 }
 
 internal class StreamingRequestModel
@@ -13,7 +18,6 @@ internal class StreamingRequestModel
     public int action { get; set; }
     [JsonPropertyName("params")]
     public StreamingParamsInfo someParameters { get; set; }
-
 }
 
 internal class StreamingParamsInfo

@@ -8,7 +8,7 @@
     <AppxAutoIncrementPackageRevision>true</AppxAutoIncrementPackageRevision>
     <Description>C# Wrapper for Angel One Smart API</Description>
     <Title>AngelOne SmartAPI</Title>
-    <Version>1.0.12</Version>
+    <Version>1.0.13</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/manvindersingh/angelone</PackageProjectUrl>
     <PackageIcon>AngelOne_Icon.png</PackageIcon>
@@ -18,7 +18,9 @@
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
 </PropertyGroup>
-
+<ItemGroup>
+  <None Include="..\CHANGELOG.md" Pack="true" PackagePath="\" />
+</ItemGroup>
 <ItemGroup>
   <None Include="..\README.md" Pack="true" PackagePath="\" />
 </ItemGroup>
@@ -26,7 +28,15 @@
 <PropertyGroup>
   <PackageReadmeFile>README.md</PackageReadmeFile>
 </PropertyGroup>
-
+<PropertyGroup>
+<PackageReleaseNotes>
+- Added support for multiple modes for WebSocket Streaming 
+- (LTP)
+- (Quote)
+- (Snap Quote)
+- (20-Depth)
+</PackageReleaseNotes>
+</PropertyGroup>
   <ItemGroup>
     <Compile Remove="licenses\**" />
     <EmbeddedResource Remove="licenses\**" />
